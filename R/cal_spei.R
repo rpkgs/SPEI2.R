@@ -34,7 +34,7 @@ cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
 
   x.mon <- x[!is.na(x)]
   if (distribution != "log-Logistic") {
-    pze <- sum(x.mon == 0) / length(x.mon)
+    pze <- sum(x.mon <= 0) / length(x.mon)
     x.mon <- x.mon[x.mon > 0]
   }
 
@@ -91,8 +91,9 @@ cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
   z <- qnorm(cdf_res)
 
   # Adjust for `pze` if distribution is Gamma or PearsonIII
-  if (distribution == "Gamma" | distribution == "PearsonIII") {
-    z <- qnorm(pze + (1 - pze) * pnorm(z))
+  if (distribution == "Gamma" | distribution == "PearsonIII") {    
+    z <- qnorm(pze + (1 - pze) * cdf_res)
+    z[x <= 0] <- -Inf
   }
 
   list(z = z, coef = f_params)
