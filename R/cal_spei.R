@@ -23,7 +23,7 @@ par_glo = setNames(rep(NA, 3), c("xi", "alpha", "kappa"))
 #' @param distribution Distribution name, one of `normal`, `Gamma`, `PearsonIII`, `log-Logistic`.
 #' @param fit Fitting method, one of `ub-pwm`, `pp-pwm`, `max-lik`.
 #' @param ... ignored
-#' 
+#'
 #' @examples
 #' cal_spei(wb)
 #' @export
@@ -54,7 +54,10 @@ cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
 
   # Calculate probability weighted moments based on `lmomco` or
   # `TLMoments`
-  pwm <- switch(fit,
+  fit2 <- fit
+  if (!(fit2 %in% c("pp-pwm", "ub-pwm"))) fit2 <- "ub-pwm"
+
+  pwm <- switch(fit2,
     "pp-pwm" = pwm.pp(x.mon, -0.35, 0, nmom = 3, sort = TRUE),
     "ub-pwm" = PWM(x.mon, order = 0:2)
   )
@@ -95,7 +98,7 @@ cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
 
 
 #' @rdname cal_spei
-#' @export 
+#' @export
 cal_spi <- function(x, distribution = "Gamma", fit = "ub-pwm", ...) {
   cal_spei(x, distribution, fit, ...)
 }
