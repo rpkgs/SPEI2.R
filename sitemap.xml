@@ -16,9 +16,15 @@
     <loc>/index.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>/reference/Generalized-Logistic.html</loc>
   </url>
   <url>
-    <loc>/reference/rpkg.template-package.html</loc>
+    <loc>/reference/SPEI2-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/cal_spei.html</loc>
+  </url>
+  <url>
+    <loc>/reference/index.html</loc>
   </url>
 </urlset>
