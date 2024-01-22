@@ -1,4 +1,5 @@
 #' @import magrittr
+#' @importFrom TLMoments PWM
 #' @keywords internal
 "_PACKAGE"
 
