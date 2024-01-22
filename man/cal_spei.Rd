@@ -23,4 +23,6 @@ cal_spei
 }
 \examples{
 cal_spei(wb)
+cal_spei(wb, fit="max-lik")
+cal_spi(wb)
 }

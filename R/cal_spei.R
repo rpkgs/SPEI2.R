@@ -26,6 +26,8 @@ par_glo = setNames(rep(NA, 3), c("xi", "alpha", "kappa"))
 #'
 #' @examples
 #' cal_spei(wb)
+#' cal_spei(wb, fit="max-lik")
+#' cal_spi(wb)
 #' @export
 cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
   r <- list(z = x * NA, coef = .options[[distribution]]$param)
