@@ -44,7 +44,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cal_spei</span><span class="op">(</span><span class="va">x</span>, distribution <span class="op">=</span> <span class="st">"log-Logistic"</span>, fit <span class="op">=</span> <span class="st">"ub-pwm"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cal_spei</span><span class="op">(</span><span class="va">x</span>, distribution <span class="op">=</span> <span class="st">"log-Logistic"</span>, fit <span class="op">=</span> <span class="st">"ub-pwm"</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">cal_spi</span><span class="op">(</span><span class="va">x</span>, distribution <span class="op">=</span> <span class="st">"Gamma"</span>, fit <span class="op">=</span> <span class="st">"ub-pwm"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -62,6 +64,15 @@
 
 </dl></div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"data-raw/data.txt"</span><span class="op">)</span><span class="op">$</span><span class="va">V1</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'data-raw/data.txt': No such file or directory</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
+<span class="r-in"><span><span class="fu">cal_spei</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'x' not found</span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
