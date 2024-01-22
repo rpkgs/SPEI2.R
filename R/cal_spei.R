@@ -11,7 +11,7 @@ par_glo = setNames(rep(NA, 3), c("xi", "alpha", "kappa"))
 # par_gev = setNames(rep(NA, 3), c("xi", "alpha", "kappa"))
 
 .options <- list(
-  "normal"       = list(pel = pelnor, par = parnor, cdf = cdfnor, param = par_nor),
+  "Normal"       = list(pel = pelnor, par = parnor, cdf = cdfnor, param = par_nor),
   "Gamma"        = list(pel = pelgam, par = pargam, cdf = cdfgam, param = par_gam),
   "PearsonIII"   = list(pel = pelpe3, par = parpe3, cdf = cdfpe3, param = par_pe3),
   "log-Logistic" = list(pel = pelglo, par = parglo, cdf = cdfglo, param = par_glo)
@@ -20,29 +20,30 @@ par_glo = setNames(rep(NA, 3), c("xi", "alpha", "kappa"))
 #' cal_spei
 #'
 #' @param x A monthly time series of certain month
-#' @param distribution Distribution name, one of `normal`, `Gamma`, `PearsonIII`, `log-Logistic`.
+#' @param distribution Distribution name, one of `Normal`, `Gamma`, `PearsonIII`, `log-Logistic`.
 #' @param fit Fitting method, one of `ub-pwm`, `pp-pwm`, `max-lik`.
 #' @param ... ignored
 #'
 #' @examples
 #' cal_spei(wb)
 #' cal_spei(wb, fit="max-lik")
+#' cal_spei(wb, distribution = "Normal")
 #' cal_spi(wb)
 #' @export
 cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
   r <- list(z = x * NA, coef = .options[[distribution]]$param)
 
   x.mon <- x[!is.na(x)]
-  if (distribution != "log-Logistic") {
+  if (distribution %in%  c("Gamma", "PearsonIII")) {    
     pze <- sum(x.mon <= 0) / length(x.mon)
     x.mon <- x.mon[x.mon > 0]
   }
 
   # Get functions
   dist <- .options[[distribution]]
-  pel_lmom <- dist$pel
+  pel_lmom   <- dist$pel
   par_lmomco <- dist$par
-  cdf <- dist$cdf
+  cdf        <- dist$cdf
 
   # Fit distribution parameters
   if (length(x.mon) < 4) {
@@ -54,10 +55,9 @@ cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
     return(r)
   }
 
-  # Calculate probability weighted moments based on `lmomco` or
-  # `TLMoments`
+  # Calculate probability weighted moments based on `lmomco` or `TLMoments`
   fit2 <- fit
-  if (!(fit2 %in% c("pp-pwm", "ub-pwm"))) fit2 <- "ub-pwm"
+  if (!(fit2 %in% c("pp-pwm", "ub-pwm"))) fit2 <- "ub-pwm" # init param for lmom
 
   pwm <- switch(fit2,
     "pp-pwm" = pwm.pp(x.mon, -0.35, 0, nmom = 3, sort = TRUE),
@@ -91,11 +91,10 @@ cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
   z <- qnorm(cdf_res)
 
   # Adjust for `pze` if distribution is Gamma or PearsonIII
-  if (distribution == "Gamma" | distribution == "PearsonIII") {    
+  if (distribution %in%  c("Gamma", "PearsonIII")) {    
     z <- qnorm(pze + (1 - pze) * cdf_res)
     z[x <= 0] <- -Inf
   }
-
   list(z = z, coef = f_params)
 }
 

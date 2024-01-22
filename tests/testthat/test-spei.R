@@ -8,5 +8,7 @@ test_that("cal_spei works", {
   expect_no_warning({
     r = cal_spei(wb, fit = "max-lik")
     r = cal_spi(wb)
+    r = cal_spei(wb, distribution = "Normal")
   })
 })
+
