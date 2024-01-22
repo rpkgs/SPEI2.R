@@ -62,15 +62,27 @@
 <dt>fit</dt>
 <dd><p>Fitting method, one of <code>ub-pwm</code>, <code>pp-pwm</code>, <code>max-lik</code>.</p></dd>
 
+
+<dt>...</dt>
+<dd><p>ignored</p></dd>
+
 </dl></div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="st">"data-raw/data.txt"</span><span class="op">)</span><span class="op">$</span><span class="va">V1</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'data-raw/data.txt': No such file or directory</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
-<span class="r-in"><span><span class="fu">cal_spei</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'x' not found</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">cal_spei</span><span class="op">(</span><span class="va">wb</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $z</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1.3465967 -0.7975582  1.2282438  1.2105785 -0.8330054 -0.7151369</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -1.5750352  0.9450827 -0.2714889 -0.1292077  1.0352074 -0.1584032</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] -0.3685087  0.6378813 -1.1502497 -0.4042817 -1.0129986 -0.5419764</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.4775998  0.8923626  0.3365170  1.0252081  0.5088347 -0.9919120</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25]  1.3625166  2.1692985 -1.9216736  0.7380880 -0.5575374 -1.0599387</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] -0.4292552 -0.5776644</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $coef</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         xi      alpha          k </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17.1677346  9.9856074 -0.1882908 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </div>
