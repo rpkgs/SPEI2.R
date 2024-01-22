@@ -2,9 +2,12 @@
 % Please edit documentation in R/cal_spei.R
 \name{cal_spei}
 \alias{cal_spei}
+\alias{cal_spi}
 \title{cal_spei}
 \usage{
 cal_spei(x, distribution = "log-Logistic", fit = "ub-pwm", ...)
+
+cal_spi(x, distribution = "Gamma", fit = "ub-pwm", ...)
 }
 \arguments{
 \item{x}{A monthly time series of certain month}
@@ -12,7 +15,12 @@ cal_spei(x, distribution = "log-Logistic", fit = "ub-pwm", ...)
 \item{distribution}{Distribution name, one of \code{normal}, \code{Gamma}, \code{PearsonIII}, \code{log-Logistic}.}
 
 \item{fit}{Fitting method, one of \code{ub-pwm}, \code{pp-pwm}, \code{max-lik}.}
+
+\item{...}{ignored}
 }
 \description{
 cal_spei
+}
+\examples{
+cal_spei(wb)
 }

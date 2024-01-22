@@ -1,7 +1,7 @@
 #' @importFrom lmom cdfnor cdfgam cdfpe3 cdfglo
 #' @importFrom lmom pelnor pelgam pelpe3 pelglo
 #' @importFrom lmomco parnor pargam parpe3 parglo
-#' @importFrom lmomco pwm2lmom are.lmom.valid
+#' @importFrom lmomco pwm2lmom are.lmom.valid pwm.pp
 NULL
 
 par_nor = setNames(rep(NA, 2), c("mu", "sigma"))
@@ -22,10 +22,10 @@ par_glo = setNames(rep(NA, 3), c("xi", "alpha", "kappa"))
 #' @param x A monthly time series of certain month
 #' @param distribution Distribution name, one of `normal`, `Gamma`, `PearsonIII`, `log-Logistic`.
 #' @param fit Fitting method, one of `ub-pwm`, `pp-pwm`, `max-lik`.
-#'
-#' @example 
-#' x = read.table("data-raw/data.txt")$V1
-#' cal_spei(x)
+#' @param ... ignored
+#' 
+#' @examples
+#' cal_spei(wb)
 #' @export
 cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
   r <- list(z = x * NA, coef = .options[[distribution]]$param)
@@ -91,4 +91,11 @@ cal_spei <- function(x, distribution = "log-Logistic", fit = "ub-pwm", ...) {
   }
 
   list(z = z, coef = f_params)
+}
+
+
+#' @rdname cal_spei
+#' @export 
+cal_spi <- function(x, distribution = "Gamma", fit = "ub-pwm", ...) {
+  cal_spei(x, distribution, fit, ...)
 }

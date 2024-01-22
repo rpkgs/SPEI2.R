@@ -1,5 +1,6 @@
 #' @import magrittr
 #' @importFrom TLMoments PWM
+#' @importFrom stats pnorm qnorm sd
 #' @keywords internal
 "_PACKAGE"
 
