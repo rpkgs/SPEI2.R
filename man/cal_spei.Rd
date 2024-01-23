@@ -5,14 +5,16 @@
 \alias{cal_spi}
 \title{cal_spei}
 \usage{
-cal_spei(x, distribution = "log-Logistic", fit = "ub-pwm", ...)
+cal_spei(x, x_ref = x, distribution = "log-Logistic", fit = "ub-pwm", ...)
 
-cal_spi(x, distribution = "Gamma", fit = "ub-pwm", ...)
+cal_spi(x, x_ref = x, distribution = "Gamma", fit = "ub-pwm", ...)
 }
 \arguments{
-\item{x}{A monthly time series of certain month}
+\item{x}{A monthly time series of certain month, which you want to calculate drought index.}
 
-\item{distribution}{Distribution name, one of \code{normal}, \code{Gamma}, \code{PearsonIII}, \code{log-Logistic}.}
+\item{x_ref}{the reference time series to fit distribution}
+
+\item{distribution}{Distribution name, one of \code{Normal}, \code{Gamma}, \code{PearsonIII}, \code{log-Logistic}.}
 
 \item{fit}{Fitting method, one of \code{ub-pwm}, \code{pp-pwm}, \code{max-lik}.}
 
@@ -23,6 +25,7 @@ cal_spei
 }
 \examples{
 cal_spei(wb)
-cal_spei(wb, fit="max-lik")
+cal_spei(wb, fit = "max-lik")
+cal_spei(wb, distribution = "Normal")
 cal_spi(wb)
 }
